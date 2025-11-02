@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">Our Projects - Elite Interiors</title>
+    <title id="pageTitle">Our Projects - Elite InteriorsArun</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="projects.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-brand">
-                <i class="fas fa-compass-drafting"></i>
+                <i id="siteIcon" class="fas fa-compass-drafting"></i>
                 <span id="siteName">Elite Interiors</span>
             </div>
             <button class="mobile-toggle" id="mobileToggle">
@@ -110,9 +110,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3><i class="fas fa-compass-drafting"></i> <span id="footerSiteName">Elite Interiors</span></h3>
+                    <h3><i id="footerSiteIcon" class="fas fa-compass-drafting"></i> <span id="footerSiteName">Elite Interiors</span></h3>
                     <p id="footerDescription">Transforming spaces into extraordinary experiences since 2018.</p>
-                    <div class="footer-contact">
+                    <div class="footer-contact" id="footerContact">
                         <p><i class="fas fa-envelope"></i> info@eliteinteriors.com</p>
                         <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
                         <p><i class="fas fa-map-marker-alt"></i> 123 Design Street, Creative City, DC 12345</p>
@@ -139,7 +139,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Connect With Us</h4>
-                    <div class="footer-social">
+                    <div class="footer-social" id="footerSocial">
                         <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
@@ -644,7 +644,30 @@
                         document.getElementById('siteName').textContent = siteInfo.siteName;
                         document.getElementById('footerSiteName').textContent = siteInfo.siteName;
                         document.getElementById('pageTitle').textContent = `Our Projects - ${siteInfo.siteName}`;
-                        document.getElementById('copyrightText').textContent = `© ${new Date().getFullYear()} ${siteInfo.siteName}. All rights reserved.`;
+                        
+                        // Update copyright text with dynamic site name
+                        const copyrightElement = document.getElementById('copyrightText');
+                        if (copyrightElement) {
+                            copyrightElement.textContent = `© ${new Date().getFullYear()} ${siteInfo.siteName}. All rights reserved.`;
+                        }
+                    }
+                    
+                    // Update site icon
+                    if (siteInfo.siteIcon) {
+                        const siteIconElement = document.getElementById('siteIcon');
+                        const footerSiteIconElement = document.getElementById('footerSiteIcon');
+                        
+                        if (siteIconElement) {
+                            // Clear existing classes and add new icon classes
+                            siteIconElement.className = siteInfo.siteIcon;
+                            console.log('✅ Site icon updated to:', siteInfo.siteIcon);
+                        }
+                        
+                        if (footerSiteIconElement) {
+                            // Update footer icon as well
+                            footerSiteIconElement.className = siteInfo.siteIcon;
+                            console.log('✅ Footer site icon updated to:', siteInfo.siteIcon);
+                        }
                     }
                     
                     // Update hero section
@@ -677,8 +700,94 @@
                         document.getElementById('footerDescription').textContent = siteInfo.description;
                     }
                 }
+                
+                // Load contact information with a small delay to ensure Firebase is ready
+                setTimeout(async () => {
+                    await loadContactInformation();
+                }, 500);
+                
             } catch (error) {
                 console.error('❌ Error loading site information:', error);
+            }
+        }
+        
+        // Load contact information from Firebase
+        async function loadContactInformation() {
+            console.log('📞 Loading contact information...');
+            
+            try {
+                if (!window.database) {
+                    console.error('❌ Firebase database not available');
+                    return;
+                }
+                
+                const snapshot = await window.database.ref('settings/contactInfo').once('value');
+                const contactInfo = snapshot.val();
+                
+                console.log('📄 Raw contact info from Firebase:', contactInfo);
+                
+                if (contactInfo && typeof contactInfo === 'object') {
+                    console.log('✅ Contact info loaded successfully:', contactInfo);
+                    
+                    // Update footer contact information
+                    const footerContactDiv = document.getElementById('footerContact');
+                    console.log('📍 Footer contact div found:', !!footerContactDiv);
+                    console.log('📧 Email exists:', !!contactInfo.email);
+                    console.log('📞 Phone exists:', !!contactInfo.phone);
+                    console.log('🏠 Address exists:', !!contactInfo.address);
+                    
+                    if (footerContactDiv) {
+                        // Always update even if some fields are missing
+                        const email = String(contactInfo.email || 'info@example.com');
+                        const phone = String(contactInfo.phone || '+1 (555) 000-0000');
+                        const address = String(contactInfo.address || 'Address not set');
+                        
+                        console.log('✅ Updating footer contact with:', { email, phone, address });
+                        
+                        footerContactDiv.innerHTML = `
+                            <p><i class="fas fa-envelope"></i> ${email}</p>
+                            <p><i class="fas fa-phone"></i> ${phone}</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${address}</p>
+                        `;
+                    } else {
+                        console.error('❌ Footer contact div not found');
+                    }
+                    
+                    // Update social links
+                    const socialDiv = document.getElementById('footerSocial');
+                    console.log('🔗 Social div found:', !!socialDiv);
+                    console.log('📱 Social links data:', contactInfo.socialLinks);
+                    
+                    if (socialDiv) {
+                        const socialLinks = [];
+                        
+                        if (contactInfo.socialLinks && typeof contactInfo.socialLinks === 'object') {
+                            if (contactInfo.socialLinks.facebook && String(contactInfo.socialLinks.facebook).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.facebook)}" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>`);
+                            }
+                            if (contactInfo.socialLinks.instagram && String(contactInfo.socialLinks.instagram).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.instagram)}" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>`);
+                            }
+                            if (contactInfo.socialLinks.twitter && String(contactInfo.socialLinks.twitter).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.twitter)}" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>`);
+                            }
+                            if (contactInfo.socialLinks.linkedin && String(contactInfo.socialLinks.linkedin).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.linkedin)}" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>`);
+                            }
+                        }
+                        
+                        console.log('✅ Generated social links:', socialLinks.length);
+                        socialDiv.innerHTML = socialLinks.join('');
+                    } else {
+                        console.error('❌ Social div not found');
+                    }
+                } else {
+                    console.warn('⚠️ No contact info found in Firebase or invalid data type');
+                    console.log('📄 Received data:', contactInfo, typeof contactInfo);
+                }
+            } catch (error) {
+                console.error('❌ Error loading contact information:', error);
+                console.error('❌ Error details:', error.message);
             }
         }
 
@@ -859,6 +968,12 @@
             // Uncomment the line below to enable auto-play
             // startCarouselAutoPlay(projectId, 6000);
         }
+
+        // Debug function to manually test contact loading
+        window.testContactLoad = async function() {
+            console.log('🧪 Manual contact load test started...');
+            await loadContactInformation();
+        };
     </script>
 </body>
 </html>

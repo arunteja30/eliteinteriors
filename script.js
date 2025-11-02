@@ -469,6 +469,155 @@ if (newsletterForm) {
 // Store contact data globally for reuse
 let globalContactData = null;
 
+// Load Site Information from Firebase
+async function loadSiteInformation() {
+    console.log('📄 Loading site information...');
+    
+    try {
+        const snapshot = await window.database.ref('settings/siteInfo').once('value');
+        const siteInfo = snapshot.val();
+        
+        if (siteInfo) {
+            console.log('✅ Site info loaded:', siteInfo);
+            
+            // Update site name
+            if (siteInfo.siteName) {
+                const siteNameElement = document.getElementById('siteName');
+                const footerSiteNameElement = document.getElementById('footerSiteName');
+                
+                if (siteNameElement) {
+                    siteNameElement.textContent = siteInfo.siteName;
+                }
+                if (footerSiteNameElement) {
+                    footerSiteNameElement.textContent = siteInfo.siteName;
+                }
+                
+                // Update page title
+                document.title = `${siteInfo.siteName} - Transform Your Space`;
+            }
+            
+            // Update site icon
+            if (siteInfo.siteIcon) {
+                const siteIconElement = document.getElementById('siteIcon');
+                const footerSiteIconElement = document.getElementById('footerSiteIcon');
+                
+                if (siteIconElement) {
+                    siteIconElement.className = siteInfo.siteIcon;
+                    console.log('✅ Site icon updated to:', siteInfo.siteIcon);
+                }
+                
+                if (footerSiteIconElement) {
+                    footerSiteIconElement.className = siteInfo.siteIcon;
+                    console.log('✅ Footer site icon updated to:', siteInfo.siteIcon);
+                }
+            }
+            
+            // Update footer description if element exists
+            const footerDescriptionElement = document.getElementById('footerDescription');
+            if (footerDescriptionElement && siteInfo.description) {
+                footerDescriptionElement.textContent = siteInfo.description;
+            }
+            
+            // Update copyright text with dynamic site name
+            const copyrightElement = document.getElementById('copyrightText');
+            if (copyrightElement && siteInfo.siteName) {
+                copyrightElement.textContent = `© ${new Date().getFullYear()} ${siteInfo.siteName}. All rights reserved.`;
+            }
+        }
+        
+        // Load contact information with a small delay to ensure Firebase is ready
+        setTimeout(async () => {
+            await loadContactInformation();
+        }, 500);
+        
+    } catch (error) {
+        console.error('❌ Error loading site information:', error);
+    }
+}
+
+// Load contact information from Firebase
+async function loadContactInformation() {
+    console.log('📞 Loading contact information...');
+    
+    try {
+        if (!window.database) {
+            console.error('❌ Firebase database not available');
+            return;
+        }
+        
+        const snapshot = await window.database.ref('settings/contactInfo').once('value');
+        const contactInfo = snapshot.val();
+        
+        console.log('📄 Raw contact info from Firebase:', contactInfo);
+        
+        if (contactInfo && typeof contactInfo === 'object') {
+            console.log('✅ Contact info loaded successfully:', contactInfo);
+            
+            // Update footer contact information
+            const footerContactDiv = document.getElementById('footerContact');
+            console.log('📍 Footer contact div found:', !!footerContactDiv);
+            console.log('📧 Email exists:', !!contactInfo.email);
+            console.log('📞 Phone exists:', !!contactInfo.phone);
+            console.log('🏠 Address exists:', !!contactInfo.address);
+            
+            if (footerContactDiv) {
+                // Always update even if some fields are missing
+                const email = String(contactInfo.email || 'info@example.com');
+                const phone = String(contactInfo.phone || '+1 (555) 000-0000');
+                const address = String(contactInfo.address || 'Address not set');
+                
+                console.log('✅ Updating footer contact with:', { email, phone, address });
+                
+                footerContactDiv.innerHTML = `
+                    <p><i class="fas fa-envelope"></i> ${email}</p>
+                    <p><i class="fas fa-phone"></i> ${phone}</p>
+                    <p><i class="fas fa-map-marker-alt"></i> ${address}</p>
+                `;
+            } else {
+                console.error('❌ Footer contact div not found');
+            }
+            
+                        // Update social links
+            const socialDiv = document.getElementById('footerSocial');
+            console.log('🔗 Social div found:', !!socialDiv);
+            console.log('📱 Social links data:', contactInfo.socialLinks);
+            
+            if (socialDiv) {
+                const socialLinks = [];
+                
+                if (contactInfo.socialLinks && typeof contactInfo.socialLinks === 'object') {
+                    if (contactInfo.socialLinks.facebook && String(contactInfo.socialLinks.facebook).trim()) {
+                        socialLinks.push(`<a href="${String(contactInfo.socialLinks.facebook)}" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>`);
+                    }
+                    if (contactInfo.socialLinks.instagram && String(contactInfo.socialLinks.instagram).trim()) {
+                        socialLinks.push(`<a href="${String(contactInfo.socialLinks.instagram)}" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>`);
+                    }
+                    if (contactInfo.socialLinks.twitter && String(contactInfo.socialLinks.twitter).trim()) {
+                        socialLinks.push(`<a href="${String(contactInfo.socialLinks.twitter)}" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>`);
+                    }
+                    if (contactInfo.socialLinks.linkedin && String(contactInfo.socialLinks.linkedin).trim()) {
+                        socialLinks.push(`<a href="${String(contactInfo.socialLinks.linkedin)}" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>`);
+                    }
+                }
+                
+                console.log('✅ Generated social links:', socialLinks.length);
+                socialDiv.innerHTML = socialLinks.join('');
+            } else {
+                console.error('❌ Social div not found');
+            }
+            
+            // Store contact info globally for forms
+            globalContactData = contactInfo;
+        } else {
+            console.warn('⚠️ No contact info found in Firebase or invalid data type');
+            console.log('📄 Received data:', contactInfo, typeof contactInfo);
+        }
+    } catch (error) {
+        console.error('❌ Error loading contact information:', error);
+        console.error('❌ Error details:', error.message);
+    }
+}
+
 // Load Statistics from Firebase
 async function loadStatistics() {
     try {
@@ -678,7 +827,7 @@ async function loadContactInfo() {
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
                         <h4>Address</h4>
-                        <p>${data.address}</p>
+                        <p>${String(data.address)}</p>
                     </div>
                 </div>
             `;
@@ -686,12 +835,14 @@ async function loadContactInfo() {
         
         // Phone
         if (data.phone) {
+            const phoneString = String(data.phone);
+            const cleanPhone = phoneString.replace(/\s/g, '');
             contactHTML += `
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
                     <div>
                         <h4>Phone</h4>
-                        <p><a href="tel:${data.phone.replace(/\s/g, '')}">${data.phone}</a></p>
+                        <p><a href="tel:${cleanPhone}">${phoneString}</a></p>
                     </div>
                 </div>
             `;
@@ -699,12 +850,14 @@ async function loadContactInfo() {
         
         // WhatsApp (if different from phone)
         if (data.whatsapp) {
+            const whatsappString = String(data.whatsapp);
+            const cleanWhatsapp = whatsappString.replace(/[^0-9]/g, '');
             contactHTML += `
                 <div class="contact-item">
                     <i class="fab fa-whatsapp"></i>
                     <div>
                         <h4>WhatsApp</h4>
-                        <p><a href="https://wa.me/${data.whatsapp.replace(/[^0-9]/g, '')}" target="_blank">${data.whatsapp}</a></p>
+                        <p><a href="https://wa.me/${cleanWhatsapp}" target="_blank">${whatsappString}</a></p>
                     </div>
                 </div>
             `;
@@ -717,7 +870,7 @@ async function loadContactInfo() {
                     <i class="fas fa-envelope"></i>
                     <div>
                         <h4>Email</h4>
-                        <p><a href="mailto:${data.email}">${data.email}</a></p>
+                        <p><a href="mailto:${String(data.email)}">${String(data.email)}</a></p>
                     </div>
                 </div>
             `;
@@ -730,7 +883,7 @@ async function loadContactInfo() {
                     <i class="fas fa-clock"></i>
                     <div>
                         <h4>Business Hours</h4>
-                        <p>${data.businessHours}</p>
+                        <p>${String(data.businessHours)}</p>
                     </div>
                 </div>
             `;
@@ -742,17 +895,17 @@ async function loadContactInfo() {
             
             if (data.socialLinks.facebook) {
                 contactHTML += `
-                    <a href="${data.socialLinks.facebook}" target="_blank" class="social-link-detailed">
+                    <a href="${String(data.socialLinks.facebook)}" target="_blank" class="social-link-detailed">
                         <i class="fab fa-facebook"></i>
-                        <span>${data.socialLinks.facebookHandle || 'Facebook'}</span>
+                        <span>${String(data.socialLinks.facebookHandle || 'Facebook')}</span>
                     </a>
                 `;
             }
             if (data.socialLinks.instagram) {
                 contactHTML += `
-                    <a href="${data.socialLinks.instagram}" target="_blank" class="social-link-detailed">
+                    <a href="${String(data.socialLinks.instagram)}" target="_blank" class="social-link-detailed">
                         <i class="fab fa-instagram"></i>
-                        <span>${data.socialLinks.instagramHandle || 'Instagram'}</span>
+                        <span>${String(data.socialLinks.instagramHandle || 'Instagram')}</span>
                     </a>
                 `;
             }
@@ -763,19 +916,19 @@ async function loadContactInfo() {
             contactHTML += '<div class="social-links">';
             
             if (data.socialLinks.facebook) {
-                contactHTML += `<a href="${data.socialLinks.facebook}" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>`;
+                contactHTML += `<a href="${String(data.socialLinks.facebook)}" target="_blank" class="social-link" title="Facebook"><i class="fab fa-facebook"></i></a>`;
             }
             if (data.socialLinks.instagram) {
-                contactHTML += `<a href="${data.socialLinks.instagram}" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>`;
+                contactHTML += `<a href="${String(data.socialLinks.instagram)}" target="_blank" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>`;
             }
             if (data.socialLinks.twitter) {
-                contactHTML += `<a href="${data.socialLinks.twitter}" target="_blank" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+                contactHTML += `<a href="${String(data.socialLinks.twitter)}" target="_blank" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>`;
             }
             if (data.socialLinks.linkedin) {
-                contactHTML += `<a href="${data.socialLinks.linkedin}" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>`;
+                contactHTML += `<a href="${String(data.socialLinks.linkedin)}" target="_blank" class="social-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>`;
             }
             if (data.socialLinks.pinterest) {
-                contactHTML += `<a href="${data.socialLinks.pinterest}" target="_blank" class="social-link" title="Pinterest"><i class="fab fa-pinterest"></i></a>`;
+                contactHTML += `<a href="${String(data.socialLinks.pinterest)}" target="_blank" class="social-link" title="Pinterest"><i class="fab fa-pinterest"></i></a>`;
             }
             
             contactHTML += '</div>';
@@ -807,10 +960,12 @@ function populateFooterContact(data) {
         let footerHTML = '<div class="footer-info">';
         
         if (data.phone) {
+            const phoneString = String(data.phone);
+            const cleanPhone = phoneString.replace(/\s/g, '');
             footerHTML += `
                 <p class="footer-info-item">
                     <i class="fas fa-phone"></i>
-                    <a href="tel:${data.phone.replace(/\s/g, '')}">${data.phone}</a>
+                    <a href="tel:${cleanPhone}">${phoneString}</a>
                 </p>
             `;
         }
@@ -819,7 +974,7 @@ function populateFooterContact(data) {
             footerHTML += `
                 <p class="footer-info-item">
                     <i class="fas fa-envelope"></i>
-                    <a href="mailto:${data.email}">${data.email}</a>
+                    <a href="mailto:${String(data.email)}">${String(data.email)}</a>
                 </p>
             `;
         }
@@ -828,7 +983,7 @@ function populateFooterContact(data) {
             footerHTML += `
                 <p class="footer-info-item">
                     <i class="fab fa-instagram"></i>
-                    <a href="${data.socialLinks.instagram}" target="_blank">${data.socialLinks.instagramHandle || '@eliteinteriors'}</a>
+                    <a href="${String(data.socialLinks.instagram)}" target="_blank">${String(data.socialLinks.instagramHandle || '@eliteinteriors')}</a>
                 </p>
             `;
         }
@@ -837,7 +992,7 @@ function populateFooterContact(data) {
             footerHTML += `
                 <p class="footer-info-item">
                     <i class="fab fa-facebook"></i>
-                    <a href="${data.socialLinks.facebook}" target="_blank">${data.socialLinks.facebookHandle || 'Facebook'}</a>
+                    <a href="${String(data.socialLinks.facebook)}" target="_blank">${String(data.socialLinks.facebookHandle || 'Facebook')}</a>
                 </p>
             `;
         }
@@ -917,7 +1072,7 @@ async function loadHeroSlides() {
                     <img src="${data.imageUrl}" alt="${data.title}" loading="lazy">
                     <div class="slide-overlay">
                         <h3 class="slide-title">${data.title}</h3>
-                        <p class="slide-category">${data.category.replace('-', ' ')}</p>
+                        <p class="slide-category">${String(data.category || '').replace('-', ' ')}</p>
                     </div>
                 </div>
             `;
@@ -1112,6 +1267,7 @@ async function initializeApp() {
     try {
         // Load all data
         await Promise.all([
+            loadSiteInformation(),
             loadHeroSlides(),
             loadGallery(),
             loadTestimonials(),

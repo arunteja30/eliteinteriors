@@ -226,6 +226,16 @@
     }
   },
   "settings": {
+    "siteInfo": {
+      "siteName": "Elite Interiors",
+      "siteTagline": "Transform Your Space",
+      "siteIcon": "fas fa-compass-drafting",
+      "logoUrl": "",
+      "description": "Transforming spaces into extraordinary experiences since 2018.",
+      "projectsPageTitle": "Our Previous Works",
+      "projectsPageSubtitle": "Explore our portfolio of completed interior design projects",
+      "projectsHeroImage": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200"
+    },
     "contactInfo": {
       "address": "123 Design Street, Creative City, DC 12345",
       "phone": "+1 (555) 123-4567",
