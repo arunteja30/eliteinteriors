@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test - Elite Interiors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .form-row input, .form-row select {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .stars {
+            display: flex;
+            gap: 5px;
+            margin: 10px 0;
+        }
+        .stars i {
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .stars i.fas {
+            color: #ffc107;
+        }
+        .stars i.far {
+            color: #ddd;
+        }
+        .console-log {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Form Testing - Elite Interiors</h1>
+        
+        <div class="test-section">
+            <h3>📝 Contact Form Test</h3>
+            <form id="contactForm" class="contact-form">
+                <div class="form-row">
+                    <input type="text" id="contactName" placeholder="Your Name" required>
+                    <input type="email" id="contactEmail" placeholder="Your Email" required>
+                </div>
+                <div class="form-row">
+                    <input type="tel" id="contactPhone" placeholder="Phone Number" required>
+                    <select id="contactService" required>
+                        <option value="">Select Service</option>
+                        <option value="residential">Residential Design</option>
+                        <option value="restaurant">Restaurant Interiors</option>
+                        <option value="theme-park">Theme Park</option>
+                        <option value="studio">Studio Design</option>
+                        <option value="movie-set">Movie Set Design</option>
+                        <option value="moulding">Moulding & Detailing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <textarea id="contactMessage" placeholder="Tell us about your project..." rows="5" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+
+        <div class="test-section">
+            <h3>⭐ Review Form Test</h3>
+            <form id="reviewForm" class="review-form">
+                <div class="form-row">
+                    <input type="text" id="reviewName" placeholder="Your Name" required>
+                    <input type="email" id="reviewEmail" placeholder="Your Email" required>
+                </div>
+                <div class="rating-input">
+                    <label>Rating:</label>
+                    <div class="stars" id="ratingStars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                </div>
+                <textarea id="reviewText" placeholder="Share your experience..." rows="4" required></textarea>
+                <button type="submit" class="btn">Submit Review</button>
+            </form>
+        </div>
+
+        <div class="test-section">
+            <h3>📧 Newsletter Form Test</h3>
+            <form class="newsletter-form">
+                <div class="form-row">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="test-section">
+            <h3>🧪 Quick Tests:</h3>
+            <button class="btn" onclick="testReviewSubmission()">Test Review Submission</button>
+            <button class="btn" onclick="checkExistingReviews()">Check Reviews Count</button>
+            <button class="btn" onclick="testFirebaseWrite()">Test Firebase Write</button>
+        </div>
+
+        <div class="test-section">
+            <h3>🔍 Console Output:</h3>
+            <div class="console-log" id="consoleOutput"></div>
+        </div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.js"></script>
+    <script src="firebase-config.js"></script>
+
+    <script>
+        // Console logging
+        function logToConsole(message) {
+            const consoleOutput = document.getElementById('consoleOutput');
+            const timestamp = new Date().toLocaleTimeString();
+            consoleOutput.textContent += `[${timestamp}] ${message}\n`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        // Override console methods to capture logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        
+        console.log = function(...args) {
+            logToConsole('LOG: ' + args.join(' '));
+            originalLog.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            logToConsole('ERROR: ' + args.join(' '));
+            originalError.apply(console, args);
+        };
+
+        // Initialize Firebase and test
+        async function testFirebaseConnection() {
+            logToConsole('🔥 Testing Firebase connection...');
+            
+            let attempts = 0;
+            while (!window.database && attempts < 10) {
+                logToConsole(`⏳ Waiting for Firebase... (${attempts + 1}/10)`);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                attempts++;
+            }
+            
+            if (window.database) {
+                logToConsole('✅ Firebase connected successfully!');
+                return true;
+            } else {
+                logToConsole('❌ Firebase connection failed!');
+                return false;
+            }
+        }
+
+        // Test Firebase write permissions
+        async function testFirebaseWrite() {
+            logToConsole('🧪 Testing Firebase write permissions...');
+            try {
+                const testRef = await window.database.ref('test').push({
+                    message: 'Test write permission',
+                    timestamp: new Date().toISOString()
+                });
+                logToConsole('✅ Firebase write test successful! Key: ' + testRef.key);
+                
+                // Clean up test data
+                await testRef.remove();
+                logToConsole('🧹 Test data cleaned up');
+                return true;
+            } catch (error) {
+                logToConsole('❌ Firebase write test failed: ' + error.message);
+                return false;
+            }
+        }
+
+        // Check existing reviews
+        async function checkExistingReviews() {
+            logToConsole('📋 Checking existing reviews...');
+            try {
+                const snapshot = await window.database.ref('reviews').once('value');
+                const reviews = snapshot.val();
+                if (reviews) {
+                    const count = Object.keys(reviews).length;
+                    logToConsole(`📝 Found ${count} existing reviews in database`);
+                    
+                    // Show latest review
+                    const reviewKeys = Object.keys(reviews);
+                    const latestKey = reviewKeys[reviewKeys.length - 1];
+                    const latestReview = reviews[latestKey];
+                    logToConsole(`📝 Latest review: ${latestReview.name} - ${latestReview.rating} stars`);
+                } else {
+                    logToConsole('📝 No reviews found in database');
+                }
+            } catch (error) {
+                logToConsole('❌ Error checking reviews: ' + error.message);
+            }
+        }
+
+        // Test review submission directly
+        async function testReviewSubmission() {
+            logToConsole('🧪 Testing direct review submission...');
+            
+            if (!window.database) {
+                logToConsole('❌ Firebase not ready');
+                return;
+            }
+            
+            try {
+                const testReview = {
+                    name: 'Test User',
+                    email: 'test@example.com',
+                    review: 'This is a test review to verify form submission is working properly.',
+                    rating: 5,
+                    approved: false,
+                    createdAt: new Date().toISOString()
+                };
+                
+                logToConsole('📝 Submitting test review...');
+                const reviewRef = await window.database.ref('reviews').push(testReview);
+                logToConsole('✅ Test review submitted successfully! Key: ' + reviewRef.key);
+                
+                // Check total count after submission
+                await checkExistingReviews();
+                
+            } catch (error) {
+                logToConsole('❌ Test review submission failed: ' + error.message);
+            }
+        }
+
+        // Test forms when page loads
+        window.addEventListener('DOMContentLoaded', async () => {
+            logToConsole('🚀 Page loaded, testing forms...');
+            
+            const firebaseReady = await testFirebaseConnection();
+            
+            if (firebaseReady) {
+                await testFirebaseWrite();
+                await checkExistingReviews();
+            }
+            
+            // Test contact form
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                logToConsole('✅ Contact form found');
+            } else {
+                logToConsole('❌ Contact form NOT found');
+            }
+            
+            // Test review form
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                logToConsole('✅ Review form found');
+            } else {
+                logToConsole('❌ Review form NOT found');
+            }
+            
+            // Test newsletter form
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                logToConsole('✅ Newsletter form found');
+            } else {
+                logToConsole('❌ Newsletter form NOT found');
+            }
+        });
+    </script>
+    
+    <!-- Include the main script with form handlers -->
+    <script src="script.js"></script>
+</body>
+</html>
