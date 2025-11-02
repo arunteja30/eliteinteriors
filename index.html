@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Interiors - Transform Your Space</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i id="siteIcon" class="fas fa-compass-drafting"></i>
+                <span id="siteName">Elite Interiors</span>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#testimonials" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Video Background -->
+        <div class="hero-video">
+            <video autoplay muted loop id="heroVideo">
+                <source src="https://player.vimeo.com/external/394153208.sd.mp4?s=ad73681da3b26bb9e1198cb7c21e4048b5e0b824&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+                <!-- Fallback background -->
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title animate-fade-in">We Build Your Dreams</h1>
+                <p class="hero-subtitle animate-fade-in-delay">Premier Interior Design for Homes, Restaurants, Theme Parks & Movie Sets</p>
+                <div class="hero-stats animate-fade-in-delay-2">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="heroExperience">15+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="heroProjects">500+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-number" id="heroClients">98+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-buttons animate-fade-in-delay-3">
+                    <a href="#contact" class="btn btn-primary">Get Free Consultation</a>
+                    <a href="#gallery" class="btn btn-secondary">View Our Work</a>
+                </div>
+            </div>
+            
+            <!-- Hero Slides -->
+            <div class="hero-slides">
+                <div class="slide-container" id="heroSlides">
+                    <!-- Slides will be loaded from Firebase -->
+                    <div class="slide-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+                <div class="slide-controls">
+                    <button class="slide-btn prev-btn" onclick="changeSlide(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slide-btn next-btn" onclick="changeSlide(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="slide-indicators" id="slideIndicators">
+                    <!-- Indicators will be generated dynamically -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive design solutions tailored to your vision</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Residential Design</h3>
+                    <p>Transform your home into a personalized sanctuary with our expert residential interior design services.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restaurant Interiors</h3>
+                    <p>Create unforgettable dining experiences with stunning restaurant and cafe interior designs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ferris-wheel"></i>
+                    </div>
+                    <h3>Theme Parks</h3>
+                    <p>Design immersive and magical theme park environments that captivate visitors of all ages.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Studio Design</h3>
+                    <p>Professional studio setups optimized for creativity, functionality, and aesthetic appeal.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Movie Set Design</h3>
+                    <p>Bring scripts to life with our cinematic set designs and production-ready installations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3>Moulding & Detailing</h3>
+                    <p>Exquisite custom moulding, trim work, and architectural details that add character and elegance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Portfolio</h2>
+                <p class="section-subtitle">Explore our stunning collection of completed projects</p>
+            </div>
+            
+            <!-- Gallery Filter -->
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="restaurant">Restaurant</button>
+                <button class="filter-btn" data-filter="theme-park">Theme Park</button>
+                <button class="filter-btn" data-filter="studio">Studio</button>
+                <button class="filter-btn" data-filter="movie-set">Movie Set</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery items will be loaded from Firebase -->
+                <div class="gallery-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading gallery...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Elite Interiors</h2>
+                    <p class="lead">We are passionate creators of exceptional spaces that inspire and delight.</p>
+                    <p>With years of experience in interior design, our team has successfully transformed countless homes, restaurants, theme parks, studios, and movie sets. We combine artistic vision with practical expertise to deliver spaces that exceed expectations.</p>
+                    <p>Our commitment to quality, attention to detail, and client satisfaction has made us a trusted name in the industry. From concept to completion, we work closely with our clients to bring their vision to life.</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3 id="aboutProjects">500+</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                        <div class="stat">
+                            <h3 id="aboutExperience">15+</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat">
+                            <h3 id="aboutSatisfaction">100%</h3>
+                            <p>Client Satisfaction</p>
+                        </div>
+                        <div class="stat">
+                            <h3 id="aboutSquareFeet">485K+</h3>
+                            <p>Sq Ft Designed</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600" alt="About Us">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Client Reviews</h2>
+                <p class="section-subtitle">What our clients say about us</p>
+            </div>
+            <div class="testimonials-grid" id="testimonialsGrid">
+                <!-- Testimonials will be loaded from Firebase -->
+                <div class="testimonials-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading reviews...</p>
+                </div>
+            </div>
+            
+            <!-- Add Review Form -->
+            <div class="add-review">
+                <h3>Share Your Experience</h3>
+                <form id="reviewForm" class="review-form">
+                    <div class="form-row">
+                        <input type="text" id="reviewName" placeholder="Your Name" required>
+                        <input type="email" id="reviewEmail" placeholder="Your Email" required>
+                    </div>
+                    <div class="rating-input">
+                        <label>Rating:</label>
+                        <div class="stars" id="ratingStars">
+                            <i class="far fa-star" data-rating="1"></i>
+                            <i class="far fa-star" data-rating="2"></i>
+                            <i class="far fa-star" data-rating="3"></i>
+                            <i class="far fa-star" data-rating="4"></i>
+                            <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                    </div>
+                    <textarea id="reviewText" placeholder="Share your experience..." rows="4" required></textarea>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">Let's bring your vision to life</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info" id="contactInfo">
+                    <!-- Contact details will be loaded from Firebase -->
+                    <div class="contact-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading contact information...</p>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <input type="text" id="contactName" placeholder="Your Name" required>
+                            <input type="email" id="contactEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" id="contactPhone" placeholder="Phone Number" required>
+                            <select id="contactService" required>
+                                <option value="">Select Service</option>
+                                <option value="residential">Residential Design</option>
+                                <option value="restaurant">Restaurant Interiors</option>
+                                <option value="theme-park">Theme Park</option>
+                                <option value="studio">Studio Design</option>
+                                <option value="movie-set">Movie Set Design</option>
+                                <option value="moulding">Moulding & Detailing</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <textarea id="contactMessage" placeholder="Tell us about your project..." rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i id="footerSiteIcon" class="fas fa-compass-drafting"></i> <span id="footerSiteName">Elite Interiors</span></h3>
+                    <p id="footerDescription">Transforming spaces into extraordinary experiences since 2018.</p>
+                    <div class="footer-contact" id="footerContact">
+                        <!-- Contact details will be loaded from Firebase -->
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Residential Design</a></li>
+                        <li><a href="#services">Restaurant Interiors</a></li>
+                        <li><a href="#services">Movie Set Design</a></li>
+                        <li><a href="#services">Moulding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="footer-social" id="footerSocial">
+                        <!-- Social links will be loaded from Firebase -->
+                    </div>
+                    <h4 style="margin-top: 1.5rem;">Newsletter</h4>
+                    <p>Subscribe to get design inspiration and updates.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyrightText">&copy; 2025 Elite Interiors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-storage-compat.js"></script>
+    
+    <!-- Main Script -->
+    <script src="firebase-config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

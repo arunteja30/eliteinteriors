@@ -1,0 +1,267 @@
+{
+  "gallery": {
+    "gallery_001": {
+      "title": "Modern Living Room Design",
+      "description": "Elegant contemporary living space with minimalist aesthetics",
+      "imageUrl": "https://media.istockphoto.com/id/1824615178/photo/interior-design-of-modern-apartment-with-colorful-dark-walls-and-orange-sofa-interior-mockup.jpg?s=612x612&w=0&k=20&c=iYt26CAed3m48RWN63aJGXe0t_3FaKMFBEy_DigJb4w=",
+      "category": "residential",
+      "createdAt": "2025-10-15T10:00:00.000Z"
+    },
+    "gallery_002": {
+      "title": "Luxury Master Bedroom",
+      "description": "Sophisticated bedroom with custom furniture and lighting",
+      "imageUrl": "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800",
+      "category": "residential",
+      "createdAt": "2025-10-14T10:00:00.000Z"
+    },
+    "gallery_003": {
+      "title": "Contemporary Kitchen",
+      "description": "State-of-the-art kitchen with modern appliances and clean lines",
+      "imageUrl": "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=800",
+      "category": "residential",
+      "createdAt": "2025-10-13T10:00:00.000Z"
+    },
+    "gallery_004": {
+      "title": "Fine Dining Restaurant",
+      "description": "Upscale restaurant interior with ambient lighting",
+      "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+      "category": "restaurant",
+      "createdAt": "2025-10-12T10:00:00.000Z"
+    },
+    "gallery_005": {
+      "title": "Cozy Cafe Interior",
+      "description": "Warm and inviting cafe space with rustic elements",
+      "imageUrl": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800",
+      "category": "restaurant",
+      "createdAt": "2025-10-11T10:00:00.000Z"
+    },
+    "gallery_006": {
+      "title": "Modern Bar Design",
+      "description": "Sleek bar area with contemporary fixtures",
+      "imageUrl": "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=800",
+      "category": "restaurant",
+      "createdAt": "2025-10-10T10:00:00.000Z"
+    },
+    "gallery_007": {
+      "title": "Executive Office Suite",
+      "description": "Professional office space with modern furnishings",
+      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "category": "commercial",
+      "createdAt": "2025-10-09T10:00:00.000Z"
+    },
+    "gallery_008": {
+      "title": "Conference Room Design",
+      "description": "Corporate meeting space with cutting-edge technology",
+      "imageUrl": "https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=800",
+      "category": "commercial",
+      "createdAt": "2025-10-08T10:00:00.000Z"
+    },
+    "gallery_009": {
+      "title": "Hotel Lobby Excellence",
+      "description": "Luxurious hotel entrance with grand design elements",
+      "imageUrl": "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+      "category": "hospitality",
+      "createdAt": "2025-10-07T10:00:00.000Z"
+    },
+    "gallery_010": {
+      "title": "Boutique Hotel Room",
+      "description": "Intimate hotel room with personalized touches",
+      "imageUrl": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+      "category": "hospitality",
+      "createdAt": "2025-10-06T10:00:00.000Z"
+    }
+  },
+  "reviews": {
+    "review_001": {
+      "name": "Sarah Johnson",
+      "email": "sarah.j@email.com",
+      "review": "Elite Interiors transformed our home into a dream space! Their attention to detail and creative vision exceeded all our expectations. The team was professional, punctual, and worked within our budget perfectly.",
+      "rating": 5,
+      "approved": true,
+      "createdAt": "2025-10-15T09:30:00.000Z"
+    },
+    "review_002": {
+      "name": "Michael Chen",
+      "email": "m.chen@business.com",
+      "review": "Outstanding work on our office renovation. The modern design has improved our team's productivity and impressed all our clients. Highly recommend Elite Interiors for commercial projects.",
+      "rating": 5,
+      "approved": true,
+      "createdAt": "2025-10-12T14:20:00.000Z"
+    },
+    "review_003": {
+      "name": "Emma Rodriguez",
+      "email": "emma.r@gmail.com",
+      "review": "Beautiful kitchen renovation that perfectly matches our lifestyle. The team listened to our needs and delivered beyond what we imagined. Professional service from start to finish.",
+      "rating": 5,
+      "approved": true,
+      "createdAt": "2025-10-10T11:45:00.000Z"
+    },
+    "review_004": {
+      "name": "David Williams",
+      "email": "d.williams@email.com",
+      "review": "Great experience working with Elite Interiors on our restaurant design. They created an atmosphere that our customers love and it's boosted our business significantly.",
+      "rating": 4,
+      "approved": true,
+      "createdAt": "2025-10-08T16:30:00.000Z"
+    },
+    "review_005": {
+      "name": "Lisa Thompson",
+      "email": "lisa.thompson@email.com",
+      "review": "Exceptional bedroom design that feels like a luxury hotel suite. The attention to lighting and space utilization was remarkable. We couldn't be happier with the results.",
+      "rating": 5,
+      "approved": true,
+      "createdAt": "2025-10-05T13:15:00.000Z"
+    }
+  },
+  "projects": {
+    "project_001": {
+      "title": "Luxury Villa Renovation",
+      "description": "Complete interior transformation of a 5,000 sq ft villa featuring contemporary design with classical elements. The project included custom furniture, lighting design, and premium material selection throughout all living spaces.",
+      "imageUrl": "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+      "category": "residential",
+      "location": "Beverly Hills, CA",
+      "area": "5,000 sq ft",
+      "duration": "6 months",
+      "client": "Private Residence",
+      "completionDate": "2024-09-15",
+      "budget": "$500,000 - $750,000",
+      "features": ["Custom Furniture", "Smart Home Integration", "Luxury Materials", "Landscape Integration"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",
+        "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800",
+        "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=800",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800"
+      ],
+      "testimonial": "Elite Interiors transformed our villa into a masterpiece. Every detail was carefully considered and executed to perfection.",
+      "clientName": "The Anderson Family",
+      "createdAt": "2025-10-15T10:00:00.000Z"
+    },
+    "project_002": {
+      "title": "Modern Corporate Headquarters",
+      "description": "Design and execution of a state-of-the-art corporate office space focusing on productivity, collaboration, and employee wellness. The project incorporated sustainable materials and innovative workspace solutions.",
+      "imageUrl": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+      "category": "commercial",
+      "location": "Downtown LA, CA",
+      "area": "15,000 sq ft",
+      "duration": "8 months",
+      "client": "TechCorp Industries",
+      "completionDate": "2024-08-20",
+      "budget": "$1,200,000 - $1,500,000",
+      "features": ["Open Workspace Design", "Green Building Certification", "Advanced AV Systems", "Wellness Areas"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800",
+        "https://images.unsplash.com/photo-1497366412874-3415097a27e7?w=800",
+        "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800",
+        "https://images.unsplash.com/photo-1556761175-129418cb2dfe?w=800"
+      ],
+      "testimonial": "The new office design has significantly improved our company culture and productivity. Outstanding work by Elite Interiors.",
+      "clientName": "TechCorp Management Team",
+      "createdAt": "2025-10-14T10:00:00.000Z"
+    },
+    "project_003": {
+      "title": "Boutique Hotel Suites",
+      "description": "Interior design for 50 luxury hotel suites combining comfort, elegance, and functionality. Each suite features unique design elements while maintaining brand consistency throughout the property.",
+      "imageUrl": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+      "category": "hospitality",
+      "location": "Santa Monica, CA",
+      "area": "25,000 sq ft",
+      "duration": "10 months",
+      "client": "Oceanview Boutique Hotel",
+      "completionDate": "2024-07-10",
+      "budget": "$2,000,000 - $2,500,000",
+      "features": ["Ocean View Optimization", "Luxury Amenities", "Sustainable Design", "Local Art Integration"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800",
+        "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
+        "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
+        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
+      ],
+      "testimonial": "Elite Interiors created an unforgettable experience for our guests. The design perfectly captures our brand vision.",
+      "clientName": "Oceanview Hotel Management",
+      "createdAt": "2025-10-13T10:00:00.000Z"
+    },
+    "project_004": {
+      "title": "Fine Dining Restaurant",
+      "description": "Complete interior design for an upscale Mediterranean restaurant featuring warm ambiance, custom lighting, and authentic materials. The design creates an immersive dining experience that transports guests to the Mediterranean coast.",
+      "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+      "category": "restaurant",
+      "location": "West Hollywood, CA",
+      "area": "4,500 sq ft",
+      "duration": "4 months",
+      "client": "Mediterranean Delights",
+      "completionDate": "2024-06-25",
+      "budget": "$350,000 - $450,000",
+      "features": ["Custom Lighting Design", "Authentic Materials", "Open Kitchen Concept", "Wine Display"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+        "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800",
+        "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=800",
+        "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800"
+      ],
+      "testimonial": "The restaurant design has exceeded our expectations and significantly increased our customer satisfaction and return visits.",
+      "clientName": "Mediterranean Delights Owner",
+      "createdAt": "2025-10-12T10:00:00.000Z"
+    },
+    "project_005": {
+      "title": "Contemporary Apartment Renovation",
+      "description": "Modern apartment renovation featuring an open-concept design with premium materials, integrated lighting solutions, and smart home technology. This project showcases contemporary interior design with clean lines and sophisticated finishes.",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1670360414946-e33a828d1d52?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2071",
+      "category": "residential",
+      "location": "Manhattan, NY",
+      "area": "2,500 sq ft",
+      "duration": "4 months",
+      "client": "Urban Living Apartments",
+      "completionDate": "2024-10-01",
+      "budget": "$200,000 - $300,000",
+      "features": ["Open Concept Design", "Premium Materials", "Smart Home Integration", "Contemporary Finishes"],
+      "gallery": [
+        "https://plus.unsplash.com/premium_photo-1670360414946-e33a828d1d52?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2071",
+        "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800",
+        "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=800",
+        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800"
+      ],
+      "testimonial": "Elite Interiors transformed our apartment into a modern masterpiece. The contemporary design perfectly matches our urban lifestyle.",
+      "clientName": "Urban Living Management",
+      "createdAt": "2025-10-11T10:00:00.000Z"
+    }
+  },
+  "settings": {
+    "siteInfo": {
+      "siteName": "Elite Interiors",
+      "siteTagline": "Transform Your Space",
+      "siteIcon": "fas fa-compass-drafting",
+      "logoUrl": "",
+      "description": "Transforming spaces into extraordinary experiences since 2018.",
+      "projectsPageTitle": "Our Previous Works",
+      "projectsPageSubtitle": "Explore our portfolio of completed interior design projects",
+      "projectsHeroImage": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200"
+    },
+    "contactInfo": {
+      "address": "123 Design Street, Creative City, DC 12345",
+      "phone": "+1 (555) 123-4567",
+      "whatsapp": "+1 (555) 123-4567",
+      "email": "info@eliteinteriors.com",
+      "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM",
+      "socialLinks": {
+        "facebook": "https://facebook.com/eliteinteriors",
+        "facebookHandle": "@eliteinteriors",
+        "instagram": "https://instagram.com/eliteinteriors",
+        "instagramHandle": "@eliteinteriors", 
+        "twitter": "https://twitter.com/eliteinteriors",
+        "linkedin": "https://linkedin.com/company/eliteinteriors",
+        "pinterest": "https://pinterest.com/eliteinteriors"
+      }
+    },
+    "statistics": {
+      "companyFoundedDate": "2018-01-15",
+      "totalProjectsCompleted": 127,
+      "totalHappyClients": 98,
+      "yearsOfExperience": 7,
+      "totalSquareFeetDesigned": 485000,
+      "activeProjects": 8,
+      "teamMembers": 12,
+      "awardsWon": 15,
+      "lastUpdated": "2025-11-02T09:00:00.000Z"
+    }
+  }
+}

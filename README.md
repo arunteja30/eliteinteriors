@@ -1,0 +1,235 @@
+# Elite Interiors - Interior Design Website
+
+A modern, responsive static website for an interior design business featuring Firebase integration for dynamic content.
+
+## Features
+
+- 🎨 Modern and responsive design
+- 📱 Mobile-first approach
+- 🖼️ Dynamic gallery with Firebase Storage integration
+- 💬 Client reviews system with Firebase Firestore
+- 📧 Contact form with Firebase database storage
+- 🎯 Service showcase
+- ⭐ Rating system for reviews
+- 🔍 Filterable gallery by category
+- 📰 Newsletter subscription
+
+## Setup Instructions
+
+### 1. Firebase Configuration
+
+1. Go to [Firebase Console](https://console.firebase.google.com/)
+2. Create a new project or use an existing one
+3. Enable Firestore Database
+4. Enable Firebase Storage
+5. Get your Firebase configuration from Project Settings
+6. Replace the configuration in `firebase-config.js`:
+
+```javascript
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+};
+```
+
+### 2. Firestore Database Structure
+
+Create the following collections in Firestore:
+
+#### Gallery Collection (`gallery`)
+```javascript
+{
+    title: "Project Title",
+    description: "Project description",
+    imageUrl: "https://firebase-storage-url/image.jpg",
+    category: "residential", // residential, restaurant, theme-park, studio, movie-set
+    createdAt: timestamp
+}
+```
+
+#### Reviews Collection (`reviews`)
+```javascript
+{
+    name: "Client Name",
+    email: "client@email.com",
+    review: "Review text",
+    rating: 5, // 1-5
+    approved: true, // boolean
+    createdAt: timestamp
+}
+```
+
+#### Contacts Collection (`contacts`)
+```javascript
+{
+    name: "Client Name",
+    email: "client@email.com",
+    phone: "Phone number",
+    service: "residential", // selected service
+    message: "Message text",
+    status: "new", // new, contacted, completed
+    createdAt: timestamp
+}
+```
+
+#### Newsletter Collection (`newsletter`)
+```javascript
+{
+    email: "subscriber@email.com",
+    subscribedAt: timestamp
+}
+```
+
+#### Settings Collection (`settings`)
+Document ID: `contactInfo`
+```javascript
+{
+    address: "123 Design Street, Creative City, DC 12345",
+    phone: "+1 (555) 123-4567",
+    email: "info@eliteinteriors.com",
+    businessHours: "Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM",
+    socialLinks: {
+        facebook: "https://facebook.com/yourpage",
+        instagram: "https://instagram.com/yourpage",
+        twitter: "https://twitter.com/yourpage",
+        linkedin: "https://linkedin.com/company/yourpage",
+        pinterest: "https://pinterest.com/yourpage"
+    }
+}
+```
+
+### 3. Firestore Security Rules
+
+Add these security rules in Firebase Console:
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Gallery - Read only
+    match /gallery/{document} {
+      allow read: if true;
+      allow write: if false; // Only admins can write (use Firebase Console)
+    }
+    
+    // Reviews - Read approved, write new (pending approval)
+    match /reviews/{document} {
+      allow read: if resource.data.approved == true;
+      allow create: if request.resource.data.approved == false;
+    }
+    
+    // Contacts - Write only
+    match /contacts/{document} {
+      allow read: if false; // Only admins can read
+      allow create: if true;
+    }
+    
+    // Newsletter - Write only
+    match /newsletter/{document} {
+      allow read: if false; // Only admins can read
+      allow create: if true;
+    }
+    
+    // Settings - Read only (contact info, etc.)
+    match /settings/{document} {
+      allow read: if true;
+      allow write: if false; // Only admins can write (use Firebase Console)
+    }
+  }
+}
+```
+
+### 4. Firebase Storage Rules
+
+```javascript
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /gallery/{allPaths=**} {
+      allow read: if true;
+      allow write: if false; // Only admins via Firebase Console
+    }
+  }
+}
+```
+
+### 5. Adding Gallery Images
+
+1. Upload images to Firebase Storage in a folder called `gallery`
+2. Get the download URL for each image
+3. Add a document to the `gallery` collection with the image URL and details
+
+### 6. Running the Website
+
+Simply open `index.html` in a web browser, or use a local server:
+
+```bash
+# Using Python
+python -m http.server 8000
+
+# Using Node.js (http-server)
+npx http-server
+
+# Using PHP
+php -S localhost:8000
+```
+
+Then visit `http://localhost:8000`
+
+## Project Structure
+
+```
+cutie/
+├── index.html          # Main HTML file
+├── styles.css          # All styles
+├── script.js           # Main JavaScript functionality
+├── firebase-config.js  # Firebase configuration
+└── README.md          # This file
+```
+
+## Services Offered
+
+- Residential Interior Design
+- Restaurant Interiors
+- Theme Park Design
+- Studio Design
+- Movie Set Design
+- Moulding & Architectural Detailing
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers
+
+## Customization
+
+### Colors
+Edit CSS variables in `styles.css`:
+```css
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #3498db;
+    /* ... */
+}
+```
+
+### Content
+- Edit text directly in `index.html`
+- Update contact information in the Contact section
+- Modify service descriptions in the Services section
+
+## Support
+
+For issues or questions, please contact the development team.
+
+## License
+
+© 2025 Elite Interiors. All rights reserved.

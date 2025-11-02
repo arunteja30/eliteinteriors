@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Our Projects - Elite InteriorsArun</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i id="siteIcon" class="fas fa-compass-drafting"></i>
+                <span id="siteName">Elite Interiors</span>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="index.html#services" class="nav-link">Services</a></li>
+                <li><a href="index.html#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="projects.html" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#about" class="nav-link">About</a></li>
+                <li><a href="index.html#testimonials" class="nav-link">Reviews</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Projects Hero Section -->
+    <section class="projects-hero" id="projectsHero">
+        <div class="hero-background" id="heroBackground"></div>
+        <div class="container">
+            <div class="projects-hero-content">
+                <h1 class="projects-title" id="projectsTitle">Our Previous Works</h1>
+                <p class="projects-subtitle" id="projectsSubtitle">Explore our portfolio of completed interior design projects</p>
+                <div class="projects-stats">
+                    <div class="projects-stat">
+                        <span class="stat-number" id="totalProjects">0</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="projects-stat">
+                        <span class="stat-number" id="yearsExperience">0+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="projects-stat">
+                        <span class="stat-number" id="happyClients">0+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Filter Section -->
+    <section class="projects-filter-section">
+        <div class="container">
+            <div class="projects-filter">
+                <button class="filter-btn active" onclick="handleFilterClick(this, 'all')">All Projects</button>
+                <button class="filter-btn" onclick="handleFilterClick(this, 'residential')">Residential</button>
+                <button class="filter-btn" onclick="handleFilterClick(this, 'commercial')">Commercial</button>
+                <button class="filter-btn" onclick="handleFilterClick(this, 'restaurant')">Restaurant</button>
+                <button class="filter-btn" onclick="handleFilterClick(this, 'hospitality')">Hospitality</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section class="projects-grid-section">
+        <div class="container">
+            <div id="loadingMessage" class="loading-message">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading projects...</p>
+            </div>
+            
+            <div id="errorMessage" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Error loading projects. Please try again.</p>
+                <button onclick="loadProjectsData()" class="retry-btn">Retry</button>
+            </div>
+            
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be loaded here -->
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadMoreBtn" class="btn btn-secondary" onclick="loadMoreProjects()" style="display: none;">
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Modal content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i id="footerSiteIcon" class="fas fa-compass-drafting"></i> <span id="footerSiteName">Elite Interiors</span></h3>
+                    <p id="footerDescription">Transforming spaces into extraordinary experiences since 2018.</p>
+                    <div class="footer-contact" id="footerContact">
+                        <p><i class="fas fa-envelope"></i> info@eliteinteriors.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Design Street, Creative City, DC 12345</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#gallery">Gallery</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li>Residential Design</li>
+                        <li>Restaurant Interiors</li>
+                        <li>Commercial Spaces</li>
+                        <li>Hospitality Design</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="footer-social" id="footerSocial">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="copyrightText">&copy; 2025 Elite Interiors. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database-compat.js"></script>
+    
+    <!-- Scripts -->
+    <script src="firebase-config.js"></script>
+    <script>
+        // Simple, robust projects implementation
+        let allProjects = [];
+        let filteredProjects = [];
+        let displayedProjects = [];
+        let currentFilter = 'all';
+        let projectsPerPage = 6;
+        let currentPage = 1;
+
+        // Smart image URL converter - handles both Google Drive and direct image links
+        function convertImageUrl(url) {
+            if (!url) return '';
+            
+            // Check if it's a Google Drive link
+            if (url.includes('drive.google.com') || url.includes('drive.usercontent.google.com')) {
+                // Extract file ID from various Google Drive URL formats
+                let fileId = '';
+                
+                if (url.includes('drive.usercontent.google.com/download?id=')) {
+                    // Format: https://drive.usercontent.google.com/download?id=FILE_ID&authuser=0
+                    const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+                    if (match) fileId = match[1];
+                } else if (url.includes('/file/d/')) {
+                    // Format: https://drive.google.com/file/d/FILE_ID/view
+                    const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+                    if (match) fileId = match[1];
+                } else if (url.includes('id=')) {
+                    // Generic format with id parameter
+                    const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+                    if (match) fileId = match[1];
+                }
+                
+                // Validate and fix file ID if needed
+                if (fileId) {
+                    // Google Drive file IDs should typically be 28+ characters and start with '1'
+                    // If it doesn't start with '1' and looks like it's missing it, add it
+                    if (fileId.length >= 20 && !fileId.startsWith('1') && 
+                        fileId.match(/^[A-Za-z0-9_-]+$/) && 
+                        (fileId.startsWith('A') || fileId.startsWith('B') || fileId.startsWith('C'))) {
+                        console.log(`🔧 Auto-fixing Google Drive file ID: ${fileId} -> 1${fileId}`);
+                        fileId = '1' + fileId;
+                    }
+                    
+                    console.log(`🔗 Converting Google Drive URL: ${url} -> file ID: ${fileId}`);
+                    return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+                } else {
+                    console.warn(`⚠️ Could not extract file ID from Google Drive URL: ${url}`);
+                }
+            }
+            
+            // If not a Google Drive link or conversion failed, return original URL
+            // This handles direct image URLs (http/https ending in image extensions)
+            return url;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Projects page initialized');
+            initializeFirebase();
+        });
+
+        // Initialize Firebase and load data
+        async function initializeFirebase() {
+            console.log('🔥 Initializing Firebase...');
+            
+            // Wait for Firebase to be ready
+            let attempts = 0;
+            while (!window.database && attempts < 20) {
+                console.log(`⏳ Waiting for Firebase... (${attempts + 1}/20)`);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                attempts++;
+            }
+            
+            if (!window.database) {
+                console.error('❌ Firebase failed to initialize');
+                showError('Firebase connection failed');
+                return;
+            }
+            
+            console.log('✅ Firebase initialized successfully');
+            
+            // Load site information and statistics
+            loadSiteInformation();
+            loadStatistics();
+            loadProjectsData();
+        }
+
+        // Load projects data from Firebase
+        async function loadProjectsData() {
+            console.log('📊 Loading projects data...');
+            
+            try {
+                const snapshot = await window.database.ref('projects').once('value');
+                const projectsData = snapshot.val();
+                
+                console.log('📄 Raw projects data:', projectsData);
+                
+                if (!projectsData) {
+                    showError('No projects found in database');
+                    return;
+                }
+                
+                // Convert to array
+                allProjects = Object.entries(projectsData).map(([id, project]) => ({
+                    id,
+                    ...project
+                }));
+                
+                console.log('✅ Projects loaded:', allProjects.length, 'items');
+                
+                // Update project count in statistics
+                updateProjectCount();
+                
+                // Hide loading message
+                document.getElementById('loadingMessage').style.display = 'none';
+                
+                // Filter and display projects
+                filterProjects(currentFilter);
+                
+            } catch (error) {
+                console.error('❌ Error loading projects:', error);
+                showError('Failed to load projects: ' + error.message);
+            }
+        }
+
+        // Handle filter button click
+        function handleFilterClick(button, category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter projects
+            filterProjects(category);
+        }
+
+        // Filter projects by category
+        function filterProjects(category) {
+            console.log('🔍 Filtering by:', category);
+            
+            currentFilter = category;
+            currentPage = 1;
+            
+            // Filter projects
+            if (category === 'all') {
+                filteredProjects = [...allProjects];
+            } else {
+                filteredProjects = allProjects.filter(project => project.category === category);
+            }
+            
+            console.log('📋 Filtered projects:', filteredProjects.length, 'items');
+            
+            // Display projects
+            displayProjects();
+        }
+
+        // Display projects on page
+        function displayProjects() {
+            const projectsGrid = document.getElementById('projectsGrid');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            
+            // Calculate which projects to show
+            const startIndex = 0;
+            const endIndex = currentPage * projectsPerPage;
+            displayedProjects = filteredProjects.slice(startIndex, endIndex);
+            
+            console.log('🎨 Displaying projects:', displayedProjects.length, 'of', filteredProjects.length);
+            
+            // Clear grid
+            projectsGrid.innerHTML = '';
+            
+            if (displayedProjects.length === 0) {
+                projectsGrid.innerHTML = '<div class="no-projects">No projects found for this category.</div>';
+                loadMoreBtn.style.display = 'none';
+                return;
+            }
+            
+            // Create project cards
+            displayedProjects.forEach(project => {
+                const card = createProjectCard(project);
+                projectsGrid.appendChild(card);
+            });
+            
+            // Show/hide load more button
+            if (endIndex < filteredProjects.length) {
+                loadMoreBtn.style.display = 'block';
+            } else {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        // Create individual project card
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            const categoryName = project.category
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+            
+            const completionYear = project.completionDate 
+                ? new Date(project.completionDate).getFullYear()
+                : 'Ongoing';
+            
+            card.innerHTML = `
+                <div class="project-image" onclick="openProjectModal('${project.id}')">
+                    <img src="${convertImageUrl(project.imageUrl)}" alt="${project.title}" 
+                         onerror="this.src='https://via.placeholder.com/400x300/f8f9fa/6c757d?text=No+Image'">
+                    <div class="project-overlay">
+                        <div class="project-category">${categoryName}</div>
+                        <div class="project-year">${completionYear}</div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">${project.title}</h3>
+                    <div class="project-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> ${project.location}</span>
+                        <span><i class="fas fa-ruler-combined"></i> ${project.area}</span>
+                    </div>
+                    <p class="project-description">${project.description.substring(0, 120)}...</p>
+                    <button class="project-btn" onclick="openProjectModal('${project.id}')">
+                        View Details <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Load more projects
+        function loadMoreProjects() {
+            currentPage++;
+            displayProjects();
+        }
+
+        // Open project modal
+        function openProjectModal(projectId) {
+            const project = allProjects.find(p => p.id === projectId);
+            if (!project) return;
+            
+            const modal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            const categoryName = project.category
+                .split('-')
+                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(' ');
+            
+            const completionDate = project.completionDate 
+                ? new Date(project.completionDate).toLocaleDateString()
+                : 'Ongoing';
+            
+            let galleryHtml = '';
+            if (project.gallery && project.gallery.length > 0) {
+                galleryHtml = `
+                    <div class="modal-section">
+                        <div class="section-card gallery-card">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-images"></i>
+                                </div>
+                                <h3>Project Gallery</h3>
+                                <span class="gallery-count">${project.gallery.length} Images</span>
+                            </div>
+                            <div class="gallery-carousel-wrapper">
+                                <div class="gallery-carousel" id="galleryCarousel-${project.id}">
+                                    <div class="carousel-container">
+                                        <div class="carousel-slides" id="carouselSlides-${project.id}">
+                                            ${project.gallery.map((img, index) => `
+                                                <div class="carousel-slide">
+                                                    <img src="${convertImageUrl(img)}" alt="${project.title} - Gallery ${index + 1}" 
+                                                         onclick="openImageLightbox('${convertImageUrl(img)}', '${project.title} - Gallery ${index + 1}')"
+                                                         onerror="this.src='https://via.placeholder.com/900x500/1a1a2e/64b5f6?text=Gallery+Image'">
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                        <button class="carousel-nav carousel-prev" onclick="changeSlide('${project.id}', -1)">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button class="carousel-nav carousel-next" onclick="changeSlide('${project.id}', 1)">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                        <div class="carousel-counter">
+                                            <span id="currentSlide-${project.id}">1</span> / ${project.gallery.length}
+                                        </div>
+                                    </div>
+                                    <div class="carousel-controls">
+                                        <div class="carousel-dots">
+                                            ${project.gallery.map((_, index) => `
+                                                <div class="carousel-dot ${index === 0 ? 'active' : ''}" 
+                                                     onclick="goToSlide('${project.id}', ${index})"></div>
+                                            `).join('')}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            let featuresHtml = '';
+            if (project.features && project.features.length > 0) {
+                featuresHtml = `
+                    <div class="modal-section">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <h3>Key Features</h3>
+                            </div>
+                            <div class="features-grid">
+                                ${project.features.map(feature => `
+                                    <div class="feature-item">
+                                        <div class="feature-icon">
+                                            <i class="fas fa-check-circle"></i>
+                                        </div>
+                                        <span class="feature-text">${feature}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            modalContent.innerHTML = `
+                <!-- Modal Hero Section -->
+                <div class="modal-hero">
+                    <div class="modal-hero-bg" style="background-image: url('${convertImageUrl(project.imageUrl)}')"></div>
+                    <div class="modal-hero-overlay"></div>
+                    <div class="modal-hero-content">
+                        <div class="modal-badge">
+                            <i class="fas fa-building"></i>
+                            <span>${categoryName}</span>
+                        </div>
+                        <h1 class="modal-title">${project.title}</h1>
+                        <div class="modal-subtitle">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${project.location}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Content Grid -->
+                <div class="modal-main">
+                    <!-- Project Overview -->
+                    <div class="modal-overview">
+                        <div class="overview-card">
+                            <div class="overview-header">
+                                <i class="fas fa-info-circle"></i>
+                                <h3>Project Overview</h3>
+                            </div>
+                            <div class="overview-stats">
+                                <div class="stat-box">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-label">Area</span>
+                                        <span class="stat-value">${project.area}</span>
+                                    </div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-label">Duration</span>
+                                        <span class="stat-value">${project.duration}</span>
+                                    </div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-label">Completed</span>
+                                        <span class="stat-value">${completionDate}</span>
+                                    </div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-icon">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <span class="stat-label">Client</span>
+                                        <span class="stat-value">${project.client}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Description -->
+                    <div class="modal-section">
+                        <div class="section-card">
+                            <div class="section-header">
+                                <div class="section-icon">
+                                    <i class="fas fa-align-left"></i>
+                                </div>
+                                <h3>About This Project</h3>
+                            </div>
+                            <div class="section-content">
+                                <p class="project-text">${project.description}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features Section -->
+                    ${featuresHtml}
+
+                    <!-- Gallery Section -->
+                    ${galleryHtml}
+
+                    <!-- Testimonial Section -->
+                    ${project.testimonial ? `
+                        <div class="modal-section testimonial-section">
+                            <div class="section-card testimonial-card">
+                                <div class="section-header">
+                                    <div class="section-icon">
+                                        <i class="fas fa-quote-left"></i>
+                                    </div>
+                                    <h3>Client Feedback</h3>
+                                </div>
+                                <div class="testimonial-content">
+                                    <div class="quote-mark">"</div>
+                                    <blockquote class="testimonial-quote">${project.testimonial}</blockquote>
+                                    <div class="testimonial-author">
+                                        <div class="author-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <cite class="author-name">${project.clientName || project.client}</cite>
+                                        <span class="author-title">Project Client</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Initialize carousel if gallery exists
+            if (project.gallery && project.gallery.length > 0) {
+                setTimeout(() => initializeCarousel(project.id), 100);
+            }
+        }
+
+        // Close modal
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) return;
+            
+            const modal = document.getElementById('projectModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Show error message
+        function showError(message) {
+            document.getElementById('loadingMessage').style.display = 'none';
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.querySelector('p').textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        // Load site information from Firebase
+        async function loadSiteInformation() {
+            console.log('📄 Loading site information...');
+            
+            try {
+                const snapshot = await window.database.ref('settings/siteInfo').once('value');
+                const siteInfo = snapshot.val();
+                
+                if (siteInfo) {
+                    console.log('✅ Site info loaded:', siteInfo);
+                    
+                    // Update site name
+                    if (siteInfo.siteName) {
+                        document.getElementById('siteName').textContent = siteInfo.siteName;
+                        document.getElementById('footerSiteName').textContent = siteInfo.siteName;
+                        document.getElementById('pageTitle').textContent = `Our Projects - ${siteInfo.siteName}`;
+                        
+                        // Update copyright text with dynamic site name
+                        const copyrightElement = document.getElementById('copyrightText');
+                        if (copyrightElement) {
+                            copyrightElement.textContent = `© ${new Date().getFullYear()} ${siteInfo.siteName}. All rights reserved.`;
+                        }
+                    }
+                    
+                    // Update site icon
+                    if (siteInfo.siteIcon) {
+                        const siteIconElement = document.getElementById('siteIcon');
+                        const footerSiteIconElement = document.getElementById('footerSiteIcon');
+                        
+                        if (siteIconElement) {
+                            // Clear existing classes and add new icon classes
+                            siteIconElement.className = siteInfo.siteIcon;
+                            console.log('✅ Site icon updated to:', siteInfo.siteIcon);
+                        }
+                        
+                        if (footerSiteIconElement) {
+                            // Update footer icon as well
+                            footerSiteIconElement.className = siteInfo.siteIcon;
+                            console.log('✅ Footer site icon updated to:', siteInfo.siteIcon);
+                        }
+                    }
+                    
+                    // Update hero section
+                    if (siteInfo.projectsPageTitle) {
+                        document.getElementById('projectsTitle').textContent = siteInfo.projectsPageTitle;
+                    }
+                    
+                    if (siteInfo.projectsPageSubtitle) {
+                        document.getElementById('projectsSubtitle').textContent = siteInfo.projectsPageSubtitle;
+                    }
+                    
+                    // Update hero background image
+                    if (siteInfo.projectsHeroImage) {
+                        const convertedHeroImage = convertImageUrl(siteInfo.projectsHeroImage);
+                        const heroBackground = document.getElementById('heroBackground');
+                        if (heroBackground) {
+                            heroBackground.style.backgroundImage = `url('${convertedHeroImage}')`;
+                        }
+                        
+                        // Also update the main hero section with overlay
+                        const heroSection = document.getElementById('projectsHero');
+                        heroSection.style.background = `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('${convertedHeroImage}')`;
+                        heroSection.style.backgroundSize = 'cover';
+                        heroSection.style.backgroundPosition = 'center';
+                        heroSection.style.backgroundRepeat = 'no-repeat';
+                    }
+                    
+                    // Update footer description
+                    if (siteInfo.description) {
+                        document.getElementById('footerDescription').textContent = siteInfo.description;
+                    }
+                }
+                
+                // Load contact information with a small delay to ensure Firebase is ready
+                setTimeout(async () => {
+                    await loadContactInformation();
+                }, 500);
+                
+            } catch (error) {
+                console.error('❌ Error loading site information:', error);
+            }
+        }
+        
+        // Load contact information from Firebase
+        async function loadContactInformation() {
+            console.log('📞 Loading contact information...');
+            
+            try {
+                if (!window.database) {
+                    console.error('❌ Firebase database not available');
+                    return;
+                }
+                
+                const snapshot = await window.database.ref('settings/contactInfo').once('value');
+                const contactInfo = snapshot.val();
+                
+                console.log('📄 Raw contact info from Firebase:', contactInfo);
+                
+                if (contactInfo && typeof contactInfo === 'object') {
+                    console.log('✅ Contact info loaded successfully:', contactInfo);
+                    
+                    // Update footer contact information
+                    const footerContactDiv = document.getElementById('footerContact');
+                    console.log('📍 Footer contact div found:', !!footerContactDiv);
+                    console.log('📧 Email exists:', !!contactInfo.email);
+                    console.log('📞 Phone exists:', !!contactInfo.phone);
+                    console.log('🏠 Address exists:', !!contactInfo.address);
+                    
+                    if (footerContactDiv) {
+                        // Always update even if some fields are missing
+                        const email = String(contactInfo.email || 'info@example.com');
+                        const phone = String(contactInfo.phone || '+1 (555) 000-0000');
+                        const address = String(contactInfo.address || 'Address not set');
+                        
+                        console.log('✅ Updating footer contact with:', { email, phone, address });
+                        
+                        footerContactDiv.innerHTML = `
+                            <p><i class="fas fa-envelope"></i> ${email}</p>
+                            <p><i class="fas fa-phone"></i> ${phone}</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${address}</p>
+                        `;
+                    } else {
+                        console.error('❌ Footer contact div not found');
+                    }
+                    
+                    // Update social links
+                    const socialDiv = document.getElementById('footerSocial');
+                    console.log('🔗 Social div found:', !!socialDiv);
+                    console.log('📱 Social links data:', contactInfo.socialLinks);
+                    
+                    if (socialDiv) {
+                        const socialLinks = [];
+                        
+                        if (contactInfo.socialLinks && typeof contactInfo.socialLinks === 'object') {
+                            if (contactInfo.socialLinks.facebook && String(contactInfo.socialLinks.facebook).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.facebook)}" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>`);
+                            }
+                            if (contactInfo.socialLinks.instagram && String(contactInfo.socialLinks.instagram).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.instagram)}" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>`);
+                            }
+                            if (contactInfo.socialLinks.twitter && String(contactInfo.socialLinks.twitter).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.twitter)}" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>`);
+                            }
+                            if (contactInfo.socialLinks.linkedin && String(contactInfo.socialLinks.linkedin).trim()) {
+                                socialLinks.push(`<a href="${String(contactInfo.socialLinks.linkedin)}" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>`);
+                            }
+                        }
+                        
+                        console.log('✅ Generated social links:', socialLinks.length);
+                        socialDiv.innerHTML = socialLinks.join('');
+                    } else {
+                        console.error('❌ Social div not found');
+                    }
+                } else {
+                    console.warn('⚠️ No contact info found in Firebase or invalid data type');
+                    console.log('📄 Received data:', contactInfo, typeof contactInfo);
+                }
+            } catch (error) {
+                console.error('❌ Error loading contact information:', error);
+                console.error('❌ Error details:', error.message);
+            }
+        }
+
+        // Load statistics from Firebase
+        async function loadStatistics() {
+            console.log('📊 Loading statistics...');
+            
+            try {
+                const snapshot = await window.database.ref('settings/statistics').once('value');
+                const stats = snapshot.val();
+                
+                if (stats) {
+                    console.log('✅ Statistics loaded:', stats);
+                    
+                    // Update experience years
+                    if (stats.companyFoundedDate) {
+                        const currentYear = new Date().getFullYear();
+                        const foundedYear = new Date(stats.companyFoundedDate).getFullYear();
+                        const yearsInBusiness = currentYear - foundedYear;
+                        animateCounter('yearsExperience', yearsInBusiness, '+');
+                    }
+                    
+                    // Update happy clients
+                    if (stats.totalClientsServed) {
+                        animateCounter('happyClients', stats.totalClientsServed, '+');
+                    }
+                    
+                    // Projects count will be updated when projects are loaded
+                }
+            } catch (error) {
+                console.error('❌ Error loading statistics:', error);
+            }
+        }
+
+        // Update project count from loaded projects
+        function updateProjectCount() {
+            const projectCount = allProjects.length;
+            animateCounter('totalProjects', projectCount, '');
+        }
+
+        // Animate counter numbers
+        function animateCounter(elementId, targetValue, suffix = '') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            const startValue = 0;
+            const duration = 2000;
+            const increment = targetValue / (duration / 16);
+            let currentValue = startValue;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(currentValue) + suffix;
+            }, 16);
+        }
+
+        // Mobile navigation toggle
+        document.getElementById('mobileToggle')?.addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Image lightbox functionality
+        function openImageLightbox(imageSrc, imageAlt) {
+            const lightbox = document.createElement('div');
+            lightbox.className = 'image-lightbox';
+            lightbox.innerHTML = `
+                <div class="lightbox-content">
+                    <img src="${imageSrc}" alt="${imageAlt}">
+                    <div class="lightbox-caption">${imageAlt}</div>
+                    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+                </div>
+            `;
+            
+            lightbox.onclick = function(e) {
+                if (e.target === lightbox) closeLightbox();
+            };
+            
+            document.body.appendChild(lightbox);
+            document.body.style.overflow = 'hidden';
+            
+            // Add to window for easy access
+            window.currentLightbox = lightbox;
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            if (window.currentLightbox) {
+                document.body.removeChild(window.currentLightbox);
+                document.body.style.overflow = 'auto';
+                window.currentLightbox = null;
+            }
+        }
+
+        // Close lightbox with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && window.currentLightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Carousel functionality
+        let currentSlideIndex = {};
+
+        function changeSlide(projectId, direction) {
+            if (!currentSlideIndex[projectId]) {
+                currentSlideIndex[projectId] = 0;
+            }
+            
+            const slides = document.getElementById(`carouselSlides-${projectId}`);
+            const dots = document.querySelectorAll(`#galleryCarousel-${projectId} .carousel-dot`);
+            const counter = document.getElementById(`currentSlide-${projectId}`);
+            const totalSlides = slides.children.length;
+            
+            currentSlideIndex[projectId] += direction;
+            
+            if (currentSlideIndex[projectId] >= totalSlides) {
+                currentSlideIndex[projectId] = 0;
+            } else if (currentSlideIndex[projectId] < 0) {
+                currentSlideIndex[projectId] = totalSlides - 1;
+            }
+            
+            const translateX = -currentSlideIndex[projectId] * 100;
+            slides.style.transform = `translateX(${translateX}%)`;
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[currentSlideIndex[projectId]].classList.add('active');
+            
+            // Update counter
+            counter.textContent = currentSlideIndex[projectId] + 1;
+        }
+
+        function goToSlide(projectId, slideIndex) {
+            currentSlideIndex[projectId] = slideIndex;
+            
+            const slides = document.getElementById(`carouselSlides-${projectId}`);
+            const dots = document.querySelectorAll(`#galleryCarousel-${projectId} .carousel-dot`);
+            const counter = document.getElementById(`currentSlide-${projectId}`);
+            
+            const translateX = -slideIndex * 100;
+            slides.style.transform = `translateX(${translateX}%)`;
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[slideIndex].classList.add('active');
+            
+            // Update counter
+            counter.textContent = slideIndex + 1;
+        }
+
+        // Auto-play carousel (optional)
+        function startCarouselAutoPlay(projectId, interval = 5000) {
+            setInterval(() => {
+                const carousel = document.getElementById(`galleryCarousel-${projectId}`);
+                if (carousel && document.body.contains(carousel)) {
+                    changeSlide(projectId, 1);
+                }
+            }, interval);
+        }
+
+        // Initialize carousel when modal opens
+        function initializeCarousel(projectId) {
+            currentSlideIndex[projectId] = 0;
+            // Uncomment the line below to enable auto-play
+            // startCarouselAutoPlay(projectId, 6000);
+        }
+
+        // Debug function to manually test contact loading
+        window.testContactLoad = async function() {
+            console.log('🧪 Manual contact load test started...');
+            await loadContactInformation();
+        };
+    </script>
+</body>
+</html>
