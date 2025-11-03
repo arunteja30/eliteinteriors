@@ -1045,7 +1045,7 @@ function populateFooterContact(data) {
             footerHTML += `
                 <p class="footer-info-item">
                     <i class="fab fa-instagram"></i>
-                    <a href="${String(data.socialLinks.instagram)}" target="_blank">${String(data.socialLinks.instagramHandle || '@eliteinteriors')}</a>
+                    <a href="${String(data.socialLinks.instagram)}" target="_blank">${String(data.socialLinks.instagramHandle || '@rginteriors')}</a>
                 </p>
             `;
         }

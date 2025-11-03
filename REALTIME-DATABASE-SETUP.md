@@ -46,7 +46,7 @@ Copy and paste the following structure into your Realtime Database:
     "review1": {
       "name": "Sarah Johnson",
       "email": "sarah.j@email.com",
-      "review": "Elite Interiors transformed our home into a dream space!",
+      "review": "RG Interiors transformed our home into a dream space!",
       "rating": 5,
       "approved": true,
       "createdAt": "2025-10-20T14:30:00.000Z"
@@ -80,16 +80,16 @@ Copy and paste the following structure into your Realtime Database:
       "address": "123 Design Street, Creative City, DC 12345",
       "phone": "+1 (555) 123-4567",
       "whatsapp": "+1 (555) 123-4567",
-      "email": "info@eliteinteriors.com",
+      "email": "info@rginteriors.com",
       "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM",
       "socialLinks": {
-        "facebook": "https://facebook.com/eliteinteriors",
-        "facebookHandle": "@eliteinteriors",
-        "instagram": "https://instagram.com/eliteinteriors",
-        "instagramHandle": "@eliteinteriors",
-        "twitter": "https://twitter.com/eliteinteriors",
-        "linkedin": "https://linkedin.com/company/eliteinteriors",
-        "pinterest": "https://pinterest.com/eliteinteriors"
+        "facebook": "https://facebook.com/rginteriors",
+        "facebookHandle": "@rginteriors",
+        "instagram": "https://instagram.com/rginteriors",
+        "instagramHandle": "@rginteriors",
+        "twitter": "https://twitter.com/rginteriors",
+        "linkedin": "https://linkedin.com/company/rginteriors",
+        "pinterest": "https://pinterest.com/rginteriors"
       }
     }
   }

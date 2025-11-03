@@ -75,7 +75,7 @@
     "review_001": {
       "name": "Sarah Johnson",
       "email": "sarah.j@email.com",
-      "review": "Elite Interiors transformed our home into a dream space! Their attention to detail and creative vision exceeded all our expectations. The team was professional, punctual, and worked within our budget perfectly.",
+      "review": "RG Interiors transformed our home into a dream space! Their attention to detail and creative vision exceeded all our expectations. The team was professional, punctual, and worked within our budget perfectly.",
       "rating": 5,
       "approved": true,
       "createdAt": "2025-10-15T09:30:00.000Z"
@@ -83,7 +83,7 @@
     "review_002": {
       "name": "Michael Chen",
       "email": "m.chen@business.com",
-      "review": "Outstanding work on our office renovation. The modern design has improved our team's productivity and impressed all our clients. Highly recommend Elite Interiors for commercial projects.",
+      "review": "Outstanding work on our office renovation. The modern design has improved our team's productivity and impressed all our clients. Highly recommend RG Interiors for commercial projects.",
       "rating": 5,
       "approved": true,
       "createdAt": "2025-10-12T14:20:00.000Z"
@@ -99,7 +99,7 @@
     "review_004": {
       "name": "David Williams",
       "email": "d.williams@email.com",
-      "review": "Great experience working with Elite Interiors on our restaurant design. They created an atmosphere that our customers love and it's boosted our business significantly.",
+      "review": "Great experience working with RG Interiors on our restaurant design. They created an atmosphere that our customers love and it's boosted our business significantly.",
       "rating": 4,
       "approved": true,
       "createdAt": "2025-10-08T16:30:00.000Z"
@@ -132,7 +132,7 @@
         "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=800",
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800"
       ],
-      "testimonial": "Elite Interiors transformed our villa into a masterpiece. Every detail was carefully considered and executed to perfection.",
+      "testimonial": "RG Interiors transformed our villa into a masterpiece. Every detail was carefully considered and executed to perfection.",
       "clientName": "The Anderson Family",
       "createdAt": "2025-10-15T10:00:00.000Z"
     },
@@ -154,7 +154,7 @@
         "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800",
         "https://images.unsplash.com/photo-1556761175-129418cb2dfe?w=800"
       ],
-      "testimonial": "The new office design has significantly improved our company culture and productivity. Outstanding work by Elite Interiors.",
+      "testimonial": "The new office design has significantly improved our company culture and productivity. Outstanding work by RG Interiors.",
       "clientName": "TechCorp Management Team",
       "createdAt": "2025-10-14T10:00:00.000Z"
     },
@@ -176,7 +176,7 @@
         "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=800",
         "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800"
       ],
-      "testimonial": "Elite Interiors created an unforgettable experience for our guests. The design perfectly captures our brand vision.",
+      "testimonial": "RG Interiors created an unforgettable experience for our guests. The design perfectly captures our brand vision.",
       "clientName": "Oceanview Hotel Management",
       "createdAt": "2025-10-13T10:00:00.000Z"
     },
@@ -220,14 +220,14 @@
         "https://images.unsplash.com/photo-1556912167-f556f1f39fdf?w=800",
         "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800"
       ],
-      "testimonial": "Elite Interiors transformed our apartment into a modern masterpiece. The contemporary design perfectly matches our urban lifestyle.",
+      "testimonial": "RG Interiors transformed our apartment into a modern masterpiece. The contemporary design perfectly matches our urban lifestyle.",
       "clientName": "Urban Living Management",
       "createdAt": "2025-10-11T10:00:00.000Z"
     }
   },
   "settings": {
     "siteInfo": {
-      "siteName": "Elite Interiors",
+      "siteName": "RG Interiors",
       "siteTagline": "Transform Your Space",
       "siteIcon": "fas fa-compass-drafting",
       "logoUrl": "",
@@ -240,16 +240,16 @@
       "address": "123 Design Street, Creative City, DC 12345",
       "phone": "+1 (555) 123-4567",
       "whatsapp": "+1 (555) 123-4567",
-      "email": "info@eliteinteriors.com",
+      "email": "info@rginteriors.com",
       "businessHours": "Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM",
       "socialLinks": {
-        "facebook": "https://facebook.com/eliteinteriors",
-        "facebookHandle": "@eliteinteriors",
-        "instagram": "https://instagram.com/eliteinteriors",
-        "instagramHandle": "@eliteinteriors", 
-        "twitter": "https://twitter.com/eliteinteriors",
-        "linkedin": "https://linkedin.com/company/eliteinteriors",
-        "pinterest": "https://pinterest.com/eliteinteriors"
+        "facebook": "https://facebook.com/rginteriors",
+        "facebookHandle": "@rginteriors",
+        "instagram": "https://instagram.com/rginteriors",
+        "instagramHandle": "@rginteriors", 
+        "twitter": "https://twitter.com/rginteriors",
+        "linkedin": "https://linkedin.com/company/rginteriors",
+        "pinterest": "https://pinterest.com/rginteriors"
       }
     },
     "statistics": {

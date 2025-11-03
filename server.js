@@ -14,6 +14,6 @@ app.get('*', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Elite Interiors website is running on port ${PORT}`);
+  console.log(`🚀 RG Interiors website is running on port ${PORT}`);
   console.log(`🌐 Access at: http://localhost:${PORT}`);
 });

@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# Elite Interiors - Professional Interior Design Website
+# RG Interiors - Professional Interior Design Website
 
 A modern, responsive interior design portfolio website with Firebase integration for dynamic content management.
 
@@ -90,7 +90,7 @@ For support or customization requests, please contact the development team.
 
 This project is licensed under the MIT License.
 =======
-# Elite Interiors - Interior Design Website
+# RG Interiors - Interior Design Website
 
 A modern, responsive static website for an interior design business featuring Firebase integration for dynamic content.
 >>>>>>> 1acfb585b5c1d39a5f804f0ab16d493c78de164c
@@ -183,7 +183,7 @@ Document ID: `contactInfo`
 {
     address: "123 Design Street, Creative City, DC 12345",
     phone: "+1 (555) 123-4567",
-    email: "info@eliteinteriors.com",
+    email: "info@rginteriors.com",
     businessHours: "Mon - Fri: 9:00 AM - 6:00 PM<br>Sat: 10:00 AM - 4:00 PM",
     socialLinks: {
         facebook: "https://facebook.com/yourpage",
@@ -325,4 +325,4 @@ For issues or questions, please contact the development team.
 
 ## License
 
-© 2025 Elite Interiors. All rights reserved.
+© 2025 RG Interiors. All rights reserved.
