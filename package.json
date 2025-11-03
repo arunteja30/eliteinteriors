@@ -1,0 +1,25 @@
+{
+  "name": "RGInteriors",
+  "version": "1.0.0",
+  "description": "Professional Interior Design Website with Firebase Integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'No build process needed for static site'",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "interior-design",
+    "portfolio",
+    "firebase",
+    "static-website"
+  ],
+  "author": "RG Interiors",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

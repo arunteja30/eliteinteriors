@@ -1,6 +1,89 @@
-# Elite Interiors - Interior Design Website
+# Elite Interiors - Professional Interior Design Website
 
-A modern, responsive static website for an interior design business featuring Firebase integration for dynamic content.
+A modern, responsive interior design portfolio website with Firebase integration for dynamic content management.
+
+## 🌟 Features
+
+- **Dynamic Content**: Firebase Realtime Database integration
+- **Project Showcase**: Interactive project gallery with modal views
+- **Contact Forms**: Working contact and review submission forms
+- **Google Drive Integration**: Smart image URL conversion for Google Drive links
+- **Mobile Responsive**: Optimized for all devices
+- **SEO Friendly**: Clean HTML structure and meta tags
+
+## 🚀 Live Demo
+
+Visit: [Your Render URL will be here]
+
+## 🛠️ Technology Stack
+
+- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
+- **Backend**: Firebase Realtime Database
+- **Authentication**: Firebase Auth (optional)
+- **Hosting**: Render
+- **Icons**: Font Awesome 6.4.0
+
+## 📁 Project Structure
+
+```
+├── index.html              # Homepage
+├── projects.html           # Projects showcase page  
+├── styles.css             # Main stylesheet
+├── projects.css           # Projects page styles
+├── script.js              # Main JavaScript functionality
+├── firebase-config.js     # Firebase configuration
+├── firebase-sample-data/  # Sample data structure
+└── README.md              # This file
+```
+
+## 🔥 Firebase Setup
+
+1. Create a Firebase project at [https://console.firebase.google.com](https://console.firebase.google.com)
+2. Enable Realtime Database
+3. Update `firebase-config.js` with your Firebase credentials
+4. Import sample data from `firebase-sample-data/all-sample-data.json`
+
+## 🚀 Deployment on Render
+
+This site is configured for easy deployment on Render:
+
+1. **Connect Repository**: Link your GitHub repository to Render
+2. **Auto-Deploy**: Render will automatically detect the static site configuration
+3. **Custom Domain**: Add your custom domain in Render dashboard
+
+### Build Settings for Render:
+- **Build Command**: `npm install`
+- **Start Command**: `npm start`
+- **Node Version**: 18.x or higher
+
+## 📝 Environment Variables
+
+No environment variables needed - Firebase config is included in the codebase for static hosting.
+
+## 🎨 Customization
+
+### Adding New Projects
+Upload project data to Firebase Realtime Database under the `projects` node.
+
+### Updating Site Information
+Modify the `settings/siteInfo` node in Firebase to update:
+- Site name and branding
+- Contact information  
+- Social media links
+- Company statistics
+
+### Styling
+- Edit `styles.css` for general styling
+- Edit `projects.css` for project-specific styles
+- Font Awesome icons are used throughout
+
+## 📞 Contact & Support
+
+For support or customization requests, please contact the development team.
+
+## 📄 License
+
+This project is licensed under the MIT License.
 
 ## Features
 
