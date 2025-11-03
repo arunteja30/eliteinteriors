@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Elite Interiors - Professional Interior Design Website
 
 A modern, responsive interior design portfolio website with Firebase integration for dynamic content management.
@@ -10,6 +11,10 @@ A modern, responsive interior design portfolio website with Firebase integration
 - **Google Drive Integration**: Smart image URL conversion for Google Drive links
 - **Mobile Responsive**: Optimized for all devices
 - **SEO Friendly**: Clean HTML structure and meta tags
+- **Client Reviews System**: Firebase Firestore integration
+- **Newsletter Subscription**: Email capture functionality
+- **Filterable Gallery**: Category-based project filtering
+- **Rating System**: Interactive star ratings for reviews
 
 ## 🚀 Live Demo
 
@@ -84,6 +89,11 @@ For support or customization requests, please contact the development team.
 ## 📄 License
 
 This project is licensed under the MIT License.
+=======
+# Elite Interiors - Interior Design Website
+
+A modern, responsive static website for an interior design business featuring Firebase integration for dynamic content.
+>>>>>>> 1acfb585b5c1d39a5f804f0ab16d493c78de164c
 
 ## Features
 
