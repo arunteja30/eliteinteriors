@@ -13,6 +13,7 @@
     <nav class="navbar" id="navbar">
         <div class="container">
             <div class="nav-brand">
+                <img id="navLogo" src="" alt="Logo" style="display: none; height: 40px; width: auto; margin-right: 10px;">
                 <i id="siteIcon" class="fas fa-compass-drafting"></i>
                 <span id="siteName">Elite Interiors</span>
             </div>
@@ -667,6 +668,22 @@
                             // Update footer icon as well
                             footerSiteIconElement.className = siteInfo.siteIcon;
                             console.log('✅ Footer site icon updated to:', siteInfo.siteIcon);
+                        }
+                    }
+                    
+                    // Update navbar logo image if provided
+                    if (siteInfo.logoUrl) {
+                        const navLogoElement = document.getElementById('navLogo');
+                        if (navLogoElement) {
+                            navLogoElement.src = convertImageUrl(siteInfo.logoUrl);
+                            navLogoElement.style.display = 'block';
+                            console.log('✅ Navbar logo updated to:', siteInfo.logoUrl);
+                            
+                            // Hide the icon if logo is present
+                            const siteIconElement = document.getElementById('siteIcon');
+                            if (siteIconElement) {
+                                siteIconElement.style.display = 'none';
+                            }
                         }
                     }
                     

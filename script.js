@@ -46,6 +46,52 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Smart Google Drive URL converter for gallery images
+function convertImageUrl(url) {
+    if (!url) return '';
+    
+    // Check if it's a Google Drive link
+    if (url.includes('drive.google.com') || url.includes('drive.usercontent.google.com')) {
+        // Extract file ID from various Google Drive URL formats
+        let fileId = '';
+        
+        if (url.includes('drive.usercontent.google.com/download?id=')) {
+            // Format: https://drive.usercontent.google.com/download?id=FILE_ID&authuser=0
+            const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+            if (match) fileId = match[1];
+        } else if (url.includes('/file/d/')) {
+            // Format: https://drive.google.com/file/d/FILE_ID/view
+            const match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            if (match) fileId = match[1];
+        } else if (url.includes('id=')) {
+            // Generic format with id parameter
+            const match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+            if (match) fileId = match[1];
+        }
+        
+        // Validate and fix file ID if needed
+        if (fileId) {
+            // Google Drive file IDs should typically be 28+ characters and start with '1'
+            // If it doesn't start with '1' and looks like it's missing it, add it
+            if (fileId.length >= 20 && !fileId.startsWith('1') && 
+                fileId.match(/^[A-Za-z0-9_-]+$/) && 
+                (fileId.startsWith('A') || fileId.startsWith('B') || fileId.startsWith('C'))) {
+                console.log(`🔧 Auto-fixing Google Drive file ID: ${fileId} -> 1${fileId}`);
+                fileId = '1' + fileId;
+            }
+            
+            console.log(`🔗 Converting Google Drive URL: ${url} -> file ID: ${fileId}`);
+            return `https://drive.google.com/thumbnail?id=${fileId}&sz=w1000`;
+        } else {
+            console.warn(`⚠️ Could not extract file ID from Google Drive URL: ${url}`);
+        }
+    }
+    
+    // If not a Google Drive link or conversion failed, return original URL
+    // This handles direct image URLs (http/https ending in image extensions)
+    return url;
+}
+
 // Gallery Filter
 const filterButtons = document.querySelectorAll('.filter-btn');
 let currentFilter = 'all';
@@ -141,7 +187,7 @@ function createGalleryItem(data) {
     item.setAttribute('data-category', data.category);
     
     const img = document.createElement('img');
-    img.src = data.imageUrl;
+    img.src = convertImageUrl(data.imageUrl);
     img.alt = data.title;
     img.loading = 'lazy';
     
@@ -166,7 +212,7 @@ function createGalleryItem(data) {
     item.appendChild(overlay);
     
     item.addEventListener('click', () => {
-        openModal(data.imageUrl, data.title);
+        openModal(convertImageUrl(data.imageUrl), data.title);
     });
     
     return item;
@@ -509,6 +555,22 @@ async function loadSiteInformation() {
                 if (footerSiteIconElement) {
                     footerSiteIconElement.className = siteInfo.siteIcon;
                     console.log('✅ Footer site icon updated to:', siteInfo.siteIcon);
+                }
+            }
+            
+            // Update navbar logo image if provided
+            if (siteInfo.logoUrl) {
+                const navLogoElement = document.getElementById('navLogo');
+                if (navLogoElement) {
+                    navLogoElement.src = convertImageUrl(siteInfo.logoUrl);
+                    navLogoElement.style.display = 'block';
+                    console.log('✅ Navbar logo updated to:', siteInfo.logoUrl);
+                    
+                    // Hide the icon if logo is present
+                    const siteIconElement = document.getElementById('siteIcon');
+                    if (siteIconElement) {
+                        siteIconElement.style.display = 'none';
+                    }
                 }
             }
             
@@ -1069,7 +1131,7 @@ async function loadHeroSlides() {
             
             slidesHTML += `
                 <div class="hero-slide ${index === 0 ? 'active' : ''}">
-                    <img src="${data.imageUrl}" alt="${data.title}" loading="lazy">
+                    <img src="${convertImageUrl(data.imageUrl)}" alt="${data.title}" loading="lazy">
                     <div class="slide-overlay">
                         <h3 class="slide-title">${data.title}</h3>
                         <p class="slide-category">${String(data.category || '').replace('-', ' ')}</p>
@@ -1124,7 +1186,7 @@ function loadStaticSlides() {
     staticSlides.forEach((slide, index) => {
         slidesHTML += `
             <div class="hero-slide ${index === 0 ? 'active' : ''}">
-                <img src="${slide.imageUrl}" alt="${slide.title}" loading="lazy">
+                <img src="${convertImageUrl(slide.imageUrl)}" alt="${slide.title}" loading="lazy">
                 <div class="slide-overlay">
                     <h3 class="slide-title">${slide.title}</h3>
                     <p class="slide-category">${slide.category}</p>
