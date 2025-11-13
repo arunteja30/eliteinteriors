@@ -1163,6 +1163,13 @@ section {
         left: 0;
     }
 
+    .hero {
+        height: auto; /* Allow hero to expand based on content */
+        min-height: 100vh; /* Minimum height for large content */
+        padding: 100px 0 2rem 0; /* Top padding for navbar, bottom for spacing */
+        align-items: flex-start; /* Align content to start instead of center */
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1189,6 +1196,7 @@ section {
     .hero-slides {
         height: 400px;
         order: -1;
+        margin-top: 0; /* Remove margin since hero has proper padding now */
     }
 
     .about-content,
@@ -1210,6 +1218,10 @@ section {
 }
 
 @media (max-width: 600px) {
+    .hero {
+        padding: 90px 0 2rem 0; /* Adjusted padding for smaller screens */
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -1220,6 +1232,7 @@ section {
 
     .hero-slides {
         height: 300px;
+        margin-top: 0; /* Remove any margin */
     }
 
     .hero-stats {
@@ -1259,5 +1272,38 @@ section {
 
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .hero {
+        padding: 100px 0 1.5rem 0; /* More padding for very small screens */
+    }
+
+    .hero-slides {
+        height: 280px;
+        margin-top: 0; /* No margin needed with proper padding */
+    }
+
+    .hero-content {
+        padding: 0 0.5rem;
+        gap: 1.5rem;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .navbar .container {
+        padding: 0.8rem 15px;
     }
 }
